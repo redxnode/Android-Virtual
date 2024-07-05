@@ -28,4 +28,4 @@ Feel free to reach out via:
 - **Website**: [Website](https://reveny.me)
 
 ## License
-This project is licensed under the GPLv3 License. See the LICENSE file for details.
+This project is licensed under the GPLv3 License. See the [LICENSE](https://github.com/reveny/Android-Virtual-Inject/blob/main/LICENSE) file for details.
