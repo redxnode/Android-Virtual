@@ -14,7 +14,8 @@ An Android Injector aimed to inject through Virtual Space without root permissio
 1. Launch the Injector App
 2. Select a target App or Game
 3. Browse for a target shared library to inject
-4. Click Inject and the App should launch
+4. Click Install to install the App in the virtual environment
+5. Click Inject and the App should launch
 
 ## Credits
 NewBlackbox by ALEX5402: https://github.com/ALEX5402/NewBlackbox <br />
