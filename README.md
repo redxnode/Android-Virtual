@@ -1,5 +1,5 @@
 # Android-Virtual-Inject
-An Android Injector aimed at injecting through Virtual Space without root permissions.
+An Android Injector aimed to inject through Virtual Space without root permissions.
 
 ## What Makes This Project Different from Others?
 - **Android 14 support**: Provides compatibility with the latest version of Android.
