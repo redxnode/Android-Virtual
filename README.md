@@ -35,3 +35,5 @@ For any questions, collaboration requests, or updates, feel free to reach out vi
 
 ## License
 This project is licensed under the GPLv3 License. See the [LICENSE](LICENSE) file for details.
+
+## Preview
