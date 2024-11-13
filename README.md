@@ -4,7 +4,8 @@ An Android Injector aimed to inject through Virtual Space without root permissio
 ## What Makes This Project Different from Others?
 - **Android 14 support**: Provides compatibility with the latest version of Android.
 - **Clean and modular code**: Easy to understand, maintain, and extend.
-- **Fully open source**: No proprietary modules are used
+- **Fully open source**: No proprietary modules are used.
+- **Easy to use UI**: The UI is simple and easy to use.
 
 ## Features
 - [x] Non-root injection
