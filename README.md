@@ -35,6 +35,9 @@ For any questions, collaboration requests, or updates, feel free to reach out vi
 - **Website**: [My Website](https://reveny.me) <br>
 - **Email**: [contact@reveny.me](mailto:contact@reveny.me) <br>
 
+## Support Me
+If you'd like to, you can support me on [Patreon](https://www.patreon.com/c/Reveny)
+
 ## License
 This project is licensed under the GPLv3 License. See the [LICENSE](LICENSE) file for details.
 
