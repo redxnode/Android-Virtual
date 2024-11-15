@@ -35,8 +35,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
+import java.util.List;
 import java.util.Objects;
 
 import rikka.material.app.LocaleDelegate;
@@ -164,10 +163,11 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void setupApplist() {
+        List<String> installedApps = Utility.getInstalledApps(requireContext());
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
             requireContext(),
             android.R.layout.simple_dropdown_item_1line,
-            Utility.getInstalledApps(requireContext())
+            installedApps
         );
         binding.appSelectorText.setAdapter(adapter);
 
@@ -175,6 +175,15 @@ public class HomeFragment extends BaseFragment {
             String selected = (String) parent.getItemAtPosition(position);
             selectedApp = selected;
             Log.i(TAG, "Selected: " + selected);
+        });
+        binding.appSelectorText.setOnFocusChangeListener((view, hasFocus) -> {
+            if (hasFocus) return;
+
+            String currText = binding.appSelectorText.getText().toString();
+            if (installedApps.stream().noneMatch(c -> c.equals(currText))) {
+                binding.appSelectorText.setText("");
+                selectedApp = null;
+            }
         });
     }
 
