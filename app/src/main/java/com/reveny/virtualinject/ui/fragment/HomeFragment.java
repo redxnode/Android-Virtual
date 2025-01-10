@@ -61,50 +61,50 @@ public class HomeFragment extends BaseFragment {
         });
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode != 1 || resultCode != Activity.RESULT_OK) {
-            return;
-        }
-
-        if (data == null || data.getData() == null) {
-            Toast.makeText(getActivity(), "File selection failed", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        Uri fileUri = data.getData();
-
-        if (fileUri != null && fileUri.getPath() != null && fileUri.getPath().endsWith(".so")) {
-            libraryPath = Objects.requireNonNull(fileUri.getPath()).replace("/document/primary:", Environment.getExternalStorageDirectory().getPath() + "/");
-            Toast.makeText(getActivity(), "File Selected: " + libraryPath, Toast.LENGTH_LONG).show();
-
-            // Define destination file in cache directory
-            File dest = new File(requireContext().getCacheDir(), "libinject.so");
-
-            try (InputStream inputStream = requireContext().getContentResolver().openInputStream(fileUri);
-                 OutputStream outputStream = new FileOutputStream(dest)) {
-
-                // Copy the file content from InputStream to OutputStream
-                byte[] buffer = new byte[1024];
-                int bytesRead;
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                }
-
-                Log.i(TAG, "Copied library file to: " + dest.getAbsolutePath());
-                binding.libPath.setText(libraryPath);
-
-            } catch (IOException e) {
-                Log.e(TAG, "Failed to copy library file", e);
-                Toast.makeText(getActivity(), "Failed to copy library file", Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
-            }
-        } else {
-            Toast.makeText(getActivity(), "Invalid file type selected. Please select a .so or .dex file.", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if (requestCode != 1 || resultCode != Activity.RESULT_OK) {
+//            return;
+//        }
+//
+//        if (data == null || data.getData() == null) {
+//            Toast.makeText(getActivity(), "File selection failed", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//
+//        Uri fileUri = data.getData();
+//
+//        if (fileUri != null && fileUri.getPath() != null && fileUri.getPath().endsWith(".so")) {
+//            libraryPath = Objects.requireNonNull(fileUri.getPath()).replace("/document/primary:", Environment.getExternalStorageDirectory().getPath() + "/");
+//            Toast.makeText(getActivity(), "File Selected: " + libraryPath, Toast.LENGTH_LONG).show();
+//
+//            // Define destination file in cache directory
+//            File dest = new File(requireContext().getCacheDir(), "libinject.so");
+//
+//            try (InputStream inputStream = requireContext().getContentResolver().openInputStream(fileUri);
+//                 OutputStream outputStream = new FileOutputStream(dest)) {
+//
+//                // Copy the file content from InputStream to OutputStream
+//                byte[] buffer = new byte[1024];
+//                int bytesRead;
+//                while ((bytesRead = inputStream.read(buffer)) != -1) {
+//                    outputStream.write(buffer, 0, bytesRead);
+//                }
+//
+//                Log.i(TAG, "Copied library file to: " + dest.getAbsolutePath());
+//                binding.libPath.setText(libraryPath);
+//
+//            } catch (IOException e) {
+//                Log.e(TAG, "Failed to copy library file", e);
+//                Toast.makeText(getActivity(), "Failed to copy library file", Toast.LENGTH_SHORT).show();
+//                e.printStackTrace();
+//            }
+//        } else {
+//            Toast.makeText(getActivity(), "Invalid file type selected. Please select a .so or .dex file.", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -118,15 +118,15 @@ public class HomeFragment extends BaseFragment {
 
         setupApplist();
 
-        binding.libPathChoose.setEndIconOnClickListener(v -> {
-            Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
-            chooseFile.setType("*/*");
-
-            // For .so
-            chooseFile.putExtra(Intent.EXTRA_MIME_TYPES, new String[]{"application/octet-stream"});
-            chooseFile = Intent.createChooser(chooseFile, "Choose a .so file");
-            startActivityForResult(chooseFile, 1);
-        });
+//        binding.libPathChoose.setEndIconOnClickListener(v -> {
+//            Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
+//            chooseFile.setType("*/*");
+//
+//            // For .so
+//            chooseFile.putExtra(Intent.EXTRA_MIME_TYPES, new String[]{"application/octet-stream"});
+//            chooseFile = Intent.createChooser(chooseFile, "Choose a .so file");
+//            startActivityForResult(chooseFile, 1);
+//        });
 
         binding.installButton.setOnClickListener(v -> {
             if (selectedApp != null) {
@@ -146,7 +146,7 @@ public class HomeFragment extends BaseFragment {
         });
 
         binding.launchButton.setOnClickListener(v -> {
-            if (selectedApp != null && libraryPath != null) {
+            if (selectedApp != null) {
                 boolean isInstalled = BlackBoxCore.get().isInstalled(selectedApp, 0);
                 if (!isInstalled) {
                     Toast.makeText(requireContext(), "Please install the app first", Toast.LENGTH_SHORT).show();
